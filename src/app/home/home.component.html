@@ -1,0 +1,14 @@
+<h1>Welcome to Task</h1>
+
+<select id="user" (change)="selecteUser($event)">
+  <option value="">Select User</option>
+  <option value="{{item._id}}" *ngFor="let item of users">{{item.username}}</option>
+</select>
+
+<select id="category" (change)="selecteTeam($event)">
+  <option value="">Select Teams</option>
+  <option value="{{item._id}}" *ngFor="let item of teams">{{item.name}}</option>
+</select>
+
+
+<button class="" (click)="assignTask()">Assign task</button>
