@@ -1,14 +1,142 @@
-<h1>Welcome to Task</h1>
+<section>
+  <div class="container">
+    <div class="row">
+        <h1>Create Users</h1>
+        <div class="col-lg-6">
+          <Label>Name: </Label>
+          <input type="text" [(ngModel)]="user.name" placeholder="Name">
+        </div>
+        <div class="col-lg-6">
+          <Label>Email: </Label>
+          <input type="text" [(ngModel)]="user.email" placeholder="Email">
+        </div>
+        <div class="col-lg-6 pull-right">
+          <button type="submit" class="btn btn-primary" (click)="saveUser()">Save User</button>
+        </div>
+        <p *ngIf="isUserSave">User is added Sucessfully</p>
+      </div>
+  </div>
+</section>
 
-<select id="user" (change)="selecteUser($event)">
-  <option value="">Select User</option>
-  <option value="{{item._id}}" *ngFor="let item of users">{{item.username}}</option>
-</select>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-12">
+        <h1>Users</h1>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of users;let i=index">
+              <td>{{i+1}}</td>
+              <td>{{item.username}}</td>
+              <td>{{item.email}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
 
-<select id="category" (change)="selecteTeam($event)">
-  <option value="">Select Teams</option>
-  <option value="{{item._id}}" *ngFor="let item of teams">{{item.name}}</option>
-</select>
+<section>
+  <div class="container">
+    <div class="row">
+        <h1>Create Teams</h1>
+        <div class="col-lg-4">
+          <Label>Name: </Label>
+          <input type="text" [(ngModel)]="team.name" placeholder="Name">
+        </div>
+        <div class="col-lg-4">
+        <select id="user" (change)="selecteUser($event,'user1')">
+          <option value="">Select User 1</option>
+          <option value="{{item.username}}" *ngFor="let item of users">{{item.username}}</option>
+        </select>
+        </div>
+        <div class="col-lg-4">
+        <select id="user" (change)="selecteUser($event,'user2')">
+          <option value="">Select User 2</option>
+          <option value="{{item.username}}" *ngFor="let item of users">{{item.username}}</option>
+        </select>
+        </div>
+        <div class="col-lg-6">
+          <button type="submit" class="btn btn-primary" (click)="saveTeam()">Save Teams</button>
+        </div>
+        <p *ngIf="isUserSave">User is added Sucessfully</p>
+      </div>
+  </div>
+</section>
 
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-12">
+        <h1>Teams</h1>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">User 1</th>
+              <th scope="col">User 2</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of teams;let i=index">
+              <td>{{i+1}}</td>
+              <td>{{item.name}}</td>
+              <td>{{item.user_1}}</td>
+              <td>{{item.user_2}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
 
-<button class="" (click)="assignTask()">Assign task</button>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-12">
+        <h1>Assign Tasks here</h1>
+        <select id="category" (change)="selecteTeam($event)">
+          <option value="">Select Teams</option>
+          <option value="{{item.name}}" *ngFor="let item of teams">{{item.name}}</option>
+        </select>
+        <button class="btn btn-primary" (click)="assignTask()">Assign task</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-12">
+        <h1>Tasks</h1>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Team</th>
+              <th scope="col">Created on</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of tasks;let i=index">
+              <td>{{i+1}}</td>
+              <td>{{item.team}}</td>
+              <td>{{item.created_at | date}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
